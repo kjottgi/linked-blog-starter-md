@@ -308,7 +308,7 @@ E[(-1)^Y] &= \sum_{{y=1}}^{\infty} (-1)^y \frac{\theta e^{-\theta}}{y!}\\ \\
 	- What i'm actually estimating is continuous, the $e^{-2\theta}$, but we are estimating using discrete poisson
 - *Are we violating the principle of unbiasedness?*
 	- A principle is generally true, but not a theorem, but always satisfactory in all cases
-# Interval Statistics
+# Interval Statistics 1: The Intro
 - If we have any estimator $\hat{\theta}$ that estimates $\theta$ 
 - We can estimate $\theta$ using a interval $[\hat{\theta_{L}}, \hat{\theta_{U}}]$ instead of using some point $\hat{\theta}$
 **Confidence Interval**: The confidence interval which is characterized using the endpoints on the interval $\hat{\theta_{L}}, \hat{\theta_{U}}$, which are the upper confidence level, and lower confidence level, are used to calculate a theta:
@@ -320,8 +320,14 @@ $$
 There are multiple types such as:
 - Two sided: $[\hat{\theta_{L}}, \hat{\theta_{U}]}$
 - Lower one sided: $[\hat{\theta_{L}},  \infty]$
+$$
+P(\bar{\theta_{L}} \leq \theta) = 1-\alpha
+$$
 - Upper one sided:$[-\infty, \hat{\theta_{U}}$
-### **Pivotal Method**
+- $$
+P(\bar{\theta \leq \theta_{L}} ) = 1-\alpha
+$$
+### Methods of Estimation
 We need to find a random variable, called a pivot, which is a function of the estimator of $\theta$ satisfying the following:
 1. It is a function of both $\theta$ and the random sample, $Y_{1},Y_{2},\dots Y_{n}$
 2. It's distribution(pdf, cdf or mgf)  does not depend on $\theta$ or any unknown parameter
@@ -332,20 +338,21 @@ U_{1} &= \bar{Y}-\mu \sim N\left( 0, \frac{\sigma^2}{n} \right)\\ \\
 U_{2} &= \frac{\bar{Y}-\mu/}{\frac{\sigma}{\sqrt{ n }}} \sim N(0,1)
 \end{align}
 $$
-Since $U_{2}$ doss not rdepend on any unknown paramaters, it is a better pivotal point.
+Since $U_{2}$ doss not depend on any unknown parameters, it is a better pivotal point.
 How to find the confidence interval:
 1. Formulate a possible pivotal quantity U
 2. Investigate if this pivotal quantity can be used as a pivotal quantity
 3. Constructing a confidence interval using U
-We will *usually* be given the pivotal quantity/
-
+We will *usually* be given the pivotal quantity, but may need to derive it!
+$1-\alpha:$ The confidence interval we want the range to be into, so the percentage of probability.
+Note that we take whatever is not in the range and divide it by two, this is not the only approach but is the best[from outside sources.]
 ###### How do we find the distribution of U?
 There are three methods:
 1. Distribution technique
 2. Moment generating function technique
 		Fact:
 		$$M_{{aY+b}}= e^b M_{Y(at)}$$
-1. Arithmetic of random variables
+3. Arithmetic of random variables
 		We know that $$
 Y \sim Exp(\theta) \rightarrow Y \sim Gam(1,\theta)
 $$So, we know the basic fact that if d
@@ -556,7 +563,43 @@ Finally, we can construct a T dist:
 $$t_{n_{1}+n_{2}+2} =\frac{\frac{(\bar{Y}-\bar{X})(\mu_{1}-\mu_{2})}{\sigma \sqrt{ \frac{1}{n_{1}} + \frac{1}{n_{2}} }}}{\frac{\frac{n_{1}+n_{2} -2}{\sigma^2}(S_{p}^2)}{n_{1}+n_{2} -2} }$$
 
 
-# Interval stats 2
+###  Normal Estimation 
+# Interval Statistics 2: Normal Estimation/ T Dist + Sample Sizes
+### Normal Estimation
+Consider estimating things like $\mu, p, \mu_{1}-\mu_{2}, p_{1}-p_{2}$, then, for large samples, we can emplot the central limit theorem with our estimator:
+$$
+Z = \frac{\hat{\theta}-\theta}{\sigma_{\hat{\theta}}}
+$$
+Z doesn't really depend on $\theta$, and even further, this is kind of what we were doing before, we just, kind of expand it.  
+#### Common Example: Showing the Normal Interval is funny
+![[Pasted image 20241101162437.png]]
+![[Pasted image 20241101162908.png]]
+From the graph, we can visualize it like this, now, we know that:
+$$\hat{\theta}=N(\theta, \sigma_{\hat{\theta}})$$
+Let us now just use the previous methods to solve for the interval:
+$$
+\begin{align}
+P(a \leq Z \leq b) &= 1-  \alpha \\    
+P(x \geq b) &= \frac{\alpha}{2}\\ 
+b &= z_{\frac{\alpha}{2}} \text{ (you can look up the z score ...)} \\
+P(x \leq a ) &= \frac{\alpha}{2}\\ 
+P(x \geq -a )  &= \frac{\alpha}{2} \\ 
+a &= -z_{\frac{\alpha}{2}}\\
+ P(a \leq Z \leq b) &= 1-  \alpha \\   \\
+P\left( -z_{\frac{\alpha}{2}} \leq \frac{\hat{\theta}-\theta}{\sigma} \leq z_{\frac{\alpha}{2}} \right) &= 1-  \alpha \\  \\
+P(-z_{\frac{\alpha}{2}}\sigma -\hat{\theta} \leq - \theta \leq z_{\frac{\alpha}{2}}\sigma -\hat{\theta} )  &= 1-  \alpha \\  \\
+P(z_{\frac{\alpha}{2}}\sigma +\hat{\theta} \geq  \theta \geq -z_{\frac{\alpha}{2}}\sigma +\hat{\theta} )  &= 1-  \alpha \\
+
+\end{align}
+$$
+We can see that the interval is kind of symmetric, so we can finally conclude that the interval is:
+$$C.I = [\hat{\theta} + z_{\frac{\alpha}{2}}\sigma, \hat{\theta}-z_{\frac{\alpha}{2}}\sigma]$$
+
+
+
+
+
+
 #### Example
 ![[Pasted image 20241007111943.png]]
 The critical interval in this case does not contain 0, as the hypothesis that $\mu_{1}=\mu_{2}$ is rejected at $95\%$ confidence level.
@@ -571,8 +614,49 @@ $$ P\left[ \frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}} \geq \sigma^2 \geq [ \fr
 **Example**
 ![[Pasted image 20241007113051.png]]
 Basically apply the formula above, note that due to the degree of freedom being so lesser, that we end up with such a big confidence interval, so we have 3 samples so our confidence interval.
-# Limiting theorems in probability
 
+### T-Dist
+If we don't know the mean, we can instead resort to using the t-dist, which is fairly similar, so, to estimate $\mu$ when we don't have $\sigma$:
+
+$$\text{ Our Pivotal Quantity} = T = \frac{\bar{Y}-\mu}{\frac{S}{\sqrt{ n }}}$$
+The bottom part is basically the standard deviation of the sample mean, we use the sample variance to estimate the theta, and the rest normally follows using the sample mean. this can be simplified using a similar proof to before to show that:
+
+$$C.I = \left[ \bar{Y} - t_{\frac{\alpha}{2}} \frac{S}{\sqrt{ n }   }, \bar{Y} + t_{\frac{\alpha}{2}} \frac{S}{\sqrt{ n }   } \right]$$
+### Comparison of means/other params.
+If we have two sample means, $\bar{X}$ and $\bar{Y}$, from normal populations so :
+$X_{i} = N(\mu_{1},\sigma_{1}),Y_{i} = N(\mu_{1},\sigma_{2})$
+where each have a certain # of samples being pooled.
+Using previous theorems, if we assume they have the same variance:
+$$\bar{X}-\bar{Y}= N\left( \mu_{1}-\mu_{2}, \sigma^2\left( \frac{1}{n_{1}}+\frac{1}{n_{2}} \right) \right)$$
+We simply apply the same normalization as previous, and if we assume that $\sigma_{1}=\sigma_{2}=\sigma$, then we can construct a "normal" distribution from the following:
+$$
+Z=N(0,1) = \frac{(\bar{X}-\bar{Y }) - (\mu_{1}-\mu_{2})}{\sigma\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}  }}
+$$
+Now, we simply want to find a estimator for the common $\sigma$, we can do so using the t-dist! Consider the sample means once again, let us use it to form a common sample variance, $S_p$. 
+$$
+\begin{align}
+S_{p}^2 &= \frac{(\sum{X_{i}-\bar{X})^2}+ \sum{(Y_{i}-\bar{Y})^2} }{n_{1}+n_{2}-2} \text{ ( We basically add all the data up like we did with a normal mean.)}\\
+&= \frac{S_{1}^2(n_{1}-1) + S_{2}^2(n_{2}-1) }{n_{1}+n_{2}-2} \text{ (Rearrange Sample Mean Formulas)}
+\end{align}
+$$
+From previous lectures we know that:
+$$W=\chi_{n_{1}+n_{2}-2} = \frac{(n_{1}+n_{2}-2)S_{p}^2}{\sigma^2}$$
+Using this, since we have a normal, and a chi dist, we can derive a student t distibution, we can finally plug them all in(simplified)
+$$
+T= \frac{T}{\sqrt{ \frac{W}{v} }} = \frac{(\bar{X}-\bar{Y }) - (\mu_{1}-\mu_{2})}{ S_{p}\sqrt{ \frac{1}{n_{1}}+\frac{1}{n_{2}} }}
+$$
+So, we have a pivotal quantity that estimates $u_1-u_{2}$(I think?), and just using it like previous parts we finally get the fact that, our confidence interval is:
+$$
+C.I = \left( \bar{X}-\bar{Y} \pm t_{\frac{\alpha}{2}}S_{p}\sqrt{ \frac{1}{n_{1}}+\frac{1}{n_{2}} } \right)
+$$
+a GOOD summary:
+![[Pasted image 20241101180227.png]]
+### Confidence Interval for stnd. dev
+you literally just use a chi distribution, there is no trick, the interval simplifies out as for $\sigma^2$
+$$C.I = [\frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}},\frac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}}] $$
+
+# Review of previous - Consistency 
+### Review of Consistency/Dev.
 **Limiting Theorems**:  
 Let $X_{1},X_{2},\dots.$ be a independent sequence of random variable with:
 $$
@@ -639,13 +723,32 @@ $$X_{n}Y_{n} \rightarrow_{S} cX$$
 $$\frac{X_{n}}{Y_{n}} \rightarrow_{D} \frac{X}{c}, c \neq 0$$
 **Example:**
 ![[Pasted image 20241007124639.png]]
-### Eff
+### Why does this matter
+A estimator $\hat{\theta}_{n}$ is said to be a consistent estimator of $\theta$ if for any positive number $\epsilon$ :
+$$
+\lim_{ n \to \infty } P(|\hat{\theta}_{n} - \theta| \leq \epsilon) = 1 
+$$
+Or, equivalently:
+$$
+\lim_{ n \to \infty } P(|\hat{\theta}_{n} - \theta| \geq \epsilon) = 0 
+$$
+On top of this, a unbiased estimator $\hat{\theta}_{n}$ for $\theta$ is a consistent estimator of $\theta$ if:
+$$\lim_{ n \to \infty } V(\hat{\theta}_{n})=0$$
+Using the above theorems above consistent estimators, we can then form more using the blow theorems.
+Suppose that $\hat{\theta}_{n}$ converges to probability to $\theta$ and that $\hat{\beta_{n}}$ converges to $\beta$
+1. $\hat{\theta}_{n} + \hat{\beta}_{n}$ converges to $\theta + \beta$
+2. $\hat{\theta}_{n} \times \hat{\beta}_{n}$ converges to $\theta \times \beta$
+3. If $\hat{\theta}_{n} \neq 0$, then $\frac{\hat{\theta}_{n}}{\hat{\beta}_{n}}$ converges to $\frac{\theta}{\beta}$
+4. If we have a function that is continuous at $\theta$, then $g(\hat{\theta}_{n})$ converges in probability to $g(\theta)$
+
+
+# Eff in Statistics.
 If $\hat{\theta_{1}}$ and $\hat{\theta_{2}}$ are unbiased estimators of $\theta$  
 **Efficiency of $\hat{\theta_{1}}$ relative to $\hat{\theta_{2}}$ * is given by*
 $$
-eff(\hat{\theta_{1}},\hat{\theta_{2}}) = \frac{Var(\hat{\theta_{1}})}{Var(\hat{\theta_{2}})}
+eff(\hat{\theta_{1}},\hat{\theta_{2}}) = \frac{Var(\hat{\theta_{2}})}{Var(\hat{\theta_{1}})}
 $$
-If $eff(\hat{\theta_{1}},\hat{\theta_{2}})>1$, then $\hat{\theta_{1}}$ is prefered as $Var(\hat{\theta_{2}})>Var(\hat{\theta_{1}})$.
+If $eff(\hat{\theta_{1}},\hat{\theta_{2}})>1$, then $\hat{\theta_{1}}$ is preferred as $Var(\hat{\theta_{2}})>Var(\hat{\theta_{1}})$.
 ##### Example
 ![[Pasted image 20241010101842.png]]
 ![[Pasted image 20241010103539.png]]
