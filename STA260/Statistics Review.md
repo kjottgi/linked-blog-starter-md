@@ -864,3 +864,5 @@ If $\theta \rightarrow 0 \Rightarrow I(\theta) \text{ increases}$, and if $\thet
 ![[Pasted image 20241021125157.png]]
 
  
+# Hypothesis Testing
+Hypoth
