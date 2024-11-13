@@ -1,0 +1,42 @@
+
+             Level    |   Code (0-3)   | Password(s) found (or reason why you got stuck) | If you were able to find the answer with a single line command, put that line here, or put a quick explanation for later levels
+(note: just putting the password as an answer is not sufficient, you must provide the step(s) you took). 
+
+Sample: 
+Level -1: 3 | password123 | cat answer.txt 
+
+------------------------------------------------------
+              Level 0: ssh bandit0@bandit.labs.overthewire.org -p 2220
+   Level 0 to Level 1: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If vi readme
+   Level 1 to Level 2: 0
+   Level 2 to Level 3: 0
+   Level 3 to Level 4: 0
+   Level 4 to Level 5: 0
+   Level 5 to Level 6: 0
+   Level 6 to Level 7: 0
+   Level 7 to Level 8: 0
+   Level 8 to Level 9: 0
+  Level 9 to Level 10: 0
+ Level 10 to Level 11: 0
+ Level 11 to Level 12: 0
+ Level 12 to Level 13: 0
+ Level 13 to Level 14: 0
+ Level 14 to Level 15: 0
+ Level 15 to Level 16: 0
+ Level 16 to Level 17: 0
+ Level 17 to Level 18: 0
+ Level 18 to Level 19: 0
+ Level 19 to Level 20: 0
+ Level 20 to Level 21: 0
+ Level 21 to Level 22: 0
+ Level 22 to Level 23: 0
+ Level 23 to Level 24: 0
+ Level 24 to Level 25: 0
+ Level 25 to Level 26: 0
+ Level 26 to Level 27: 0
+ Level 27 to Level 28: 0
+ Level 28 to Level 29: 0
+ Level 29 to Level 30: 0
+ Level 30 to Level 31: 0
+ Level 31 to Level 32: 0
+ Level 32 to Level 33: 0

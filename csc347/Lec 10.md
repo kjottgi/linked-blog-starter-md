@@ -1,0 +1,3 @@
+- The VMS should usually know absolutely nothing about the surroundings they are in.
+- Gateway tells you where the next hop is, 0,0,0,0 is just that it's on the same network
+- 
