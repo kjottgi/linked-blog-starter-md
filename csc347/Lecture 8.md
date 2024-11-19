@@ -1,12 +1,19 @@
 ****
+Alice and bob** are two people that are trying to communicate
+- Eve is just listening to people talking
+- Mallory is a malicious attacker but 
 **Confidentiality/Privacy**
-
+- We want to make sure E and M can't read
+- Only those authorized can read
+- We use algorithms to do this.
+*Some common examples is https, ssh, which are encrypting.*
 **Data Integrity**
 - Messages sent between two people should remain in tact and modification should be know
 - Anything should not be altered, if so, not change
 **Authentication**
 - Messages sent between A&B appear in tact (vs M) and A and B should know that a message has been modified
 - Written data should not be altered. known if so.
+- We want to make sure it's not modified or changed. 
 **Authentication**
 - Ensure that A knows that she is talking to B and vice versa
 - Difficult to define well:
@@ -78,4 +85,5 @@ If the number if very large.
 - Our adversay can hijack the channel and placing themselves between aliace and bob
 - They do their own key exchange getting it from both with both not knowing any better
 - How do we ensure that alice is *really* talking to bob?
-- 
+
+
