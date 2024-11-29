@@ -862,7 +862,82 @@ Alternatively:
 $$I(\theta) = -\int_{-\infty}^{\infty} \frac{\partial^2 \log(f(y;\theta)) }{\partial \theta^2} f(y: \theta)  dy  = -E[\int_{-\infty}^{\infty} \frac{\partial^2 \log(f(y;\theta)) }{\partial \theta^2} ]$$![[Pasted image 20241021124521.png]]
 If $\theta \rightarrow 0 \Rightarrow I(\theta) \text{ increases}$, and if $\theta \rightarrow 1 \Rightarrow I(\theta) \text{ increases}$
 ![[Pasted image 20241021125157.png]]
-
+# suffiency/Rao-Blackwell Theorem
  
-# Hypothesis Testing
-Hypoth
+#### **What is sufficient?**
+Sufficiency is if $Y_{1},Y_{2},\dots Y_{n} \sim^{iid} f_y(\theta)$, 
+- If we consider the addition of all the observations, the sample mean $\bar{Y}$ contains as much data as the entire sample size
+- It is sufficient if the conditional distribution does not depend on $\theta$
+We use the factorization theorem:
+- If it possible to decompose the likelihood function into two positive functions, then our statistic is sufficient for estimating $\theta$
+$$L\left( y_{1},y_{2}, \dots | \theta \right) = g(u,\theta)  \times h(y_{1},y_{2}\dots y_{n})$$
+Where $g(u,\theta)$ is the function only of u and $\theta$ and $h(y_{1},y_{2},\dots y_{n})$ is not a function of $\theta$
+ex)
+#### How is something complete
+A statistic $U=U(Y_{1},\dots Y_{n})$, is said to be complete if and only if for every function $g(U)$ such that:
+$$
+E(g(U))= 0
+$$
+For all $\theta$ implies that $G(U)=0$. 
+
+
+
+# Rao-Blackwell Theorem
+#### The Rao-Blackwell Theorem
+If we have a unbiased estimator $\hat{\theta}$ that is unbiased and $V(\hat{\theta})<\infty$. If U is a sufficient statistics for $\theta$, then let $\hat{\theta*}=E(\hat{\theta}|U)$, then for all $\theta$:
+$$
+E(\hat{\theta*})=\theta, V(\hat{\theta*}) \leq V(\hat{\theta})
+$$
+This basically implies that a unbiased estimator for $\theta$ can be made into sufficient statistic.]
+Note the basic facts that:
+- $E[E[X_{1}|X_{2}]]  = E[X_{1}]$
+- $Var(E[X_{1}|X_{2}]) \leq Var(X_{1})$
+We can improve a estimator as follows:
+1. Starting with a unbiased estimator $\hat{\theta}$, for a parameter and the sufficient statistic $U$ obtained via facterization
+2. Then $\hat{\theta} = E(\hat{\theta}|U)$ is "better" then $\hat{\theta}$, as it is unbiased andhas better variance.
+Note the fact that we need a unbiased estimator, and a sufficient estimator.
+#### Finding UMVUE estimators with Rao-Blackwell
+Suppose $Y_{1},\dots Y_{n}$ are iid with pdf with $f(y|\theta)$, if $U_{1}=U_{1}(Y_{1}\dots Y_{n})$, is a unbiased estimator of $\theta$, and  $U_{2}=U_{2}(Y_{1}\dots Y_{n})$, is sufficient and ***complete***. Then $E(U_{1}|E_{2})$ is a unique minimum variance unbiased estimator of $\theta$.
+- It's unique by 9.68 on 472
+- It is a MVUE by Rao-Blackwell
+
+This can be done in two ways:
+1. 
+	- Get $U_{1}$ and $U_{2}$ such that $U_{1}$ is unbiased estimator and $U_{2}$ is sufficient and complete
+	- Then $E(U_{1})|U_{2})$ is A UMVUE
+2. .,
+	- Find a complete and sufficient statistic U
+	- Find a function $f(x)$ such that $E(f(U))=\theta$, then $f(U)$ is a UMVUE
+
+#### Using Exponential families to get completeness
+We can do it in two ways:
+1. Using complete def
+	1. We get a sufficient statistic using factorization th eorem
+	2. We check it is complete via $E(g(U))=0$ for all $\theta$ implies that $g(U)=0$
+2. Method 2
+	1. We can use exponentials
+#### Exponential Family
+$f(y|\theta)$ is said to be member of **exponential class** if it can be written in the form:
+$$
+f(y|\theta) = e^{p(\theta)K(y) + q(\theta) + S(y)}, a<y<b
+$$
+$f(y|\theta)$ is said to be a regular member of the exponential class if in addition to above:
+1. The domain is free of $\theta$, so a and b do not have $\theta$
+2. $p(\theta)$ and $K(y)$ are non trivial ($p'(\theta) \neq 0$  and $K'(y) \neq 0$)
+3. S(y) is continuous 
+Now, note the following:
+##### Exponentials to sufficient and complete
+Consider the pdf/pmf $f(y|\theta)$, where $\theta \in \Omega$, If $f(y|\theta)$ is a regular member of the exponential class, then $U=\sum_{i=0}^{n}K(y_{i})$, is sufficient and complete
+- *This is done on exercise 9.45 on page 463.*
+##### Sufficient exponential classes to exponential:
+Now, the expectation of K(y) is:
+$$
+E(K(y)) = -\frac{q'(\theta)}{p'(\theta)}
+$$
+Hence, for our statistic U:
+$$
+E(U)=  E(\sum_{i=0}^{n}K(y_{i})) = -n \frac{q'(\theta)}{p'(\theta)}
+$$
+
+
+# Factorizaiton
